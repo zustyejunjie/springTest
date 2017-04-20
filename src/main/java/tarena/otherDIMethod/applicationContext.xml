@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	">
+
+
+
+	<!-- 定义bean 设置属性  -->
+	<bean id="person" class="tarena.otherDIMethod.Person">
+		<property name="age" value="30" />
+		<property name="son">
+			<!-- 使用嵌套Bean定义属性值 -->
+			<bean class="tarena.otherDIMethod.Son">
+				<property name="age" value="11" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 定义bean 设置属性   设置的age属性  是从上面定义的person中取出来的 -->
+	<bean id="son2" class="tarena.otherDIMethod.Son">
+		<!-- age属性不是直接注入，而是将person中的son的age属性赋值给son2的age属性 -->
+		<property name="age">
+			<!-- 注意这里使用的是PropertyPathFactoryBean -->
+			<bean id="person.son.age"
+				  class="org.springframework.beans.factory.config.PropertyPathFactoryBean" />
+		</property>
+	</bean>
+</beans>

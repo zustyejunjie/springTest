@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<bean id="userBean" class="tarena.demo3.UserBean">
+		<!-- 1：通过set方式注入 -->
+		<property name="helloBean" ref="EnHelloBean" />
+		<!-- <property name="name" value="张三"> -->
+		<!-- </property> -->
+		<!-- 等价于 -->
+		<property name="name">
+			<value>李四</value>
+		</property>
+
+		<!-- 2：通过构造方式 注入 index=0表示第一个参数 ref表示参数的值 -->
+		<!-- <constructor-arg index="0" ref="EnHelloBean"></constructor-arg> -->
+		<!-- <constructor-arg index="1" value="张三"></constructor-arg> -->
+	</bean>
+	<!-- 创建bean 指定id 有对应的class class为实现类 -->
+	<bean id="EnHelloBean" class="tarena.demo3.EnHelloBean" />
+
+	<bean id="ZhHelloBean" class="tarena.demo3.ZhHelloBean" />
+
+	<bean id="collectionbean" class="tarena.demo3.CollectionBean">
+		<!-- List -->
+		<property name="city">
+			<list>
+				<value>北京</value>
+				<value>上海</value>
+				<value>深圳</value>
+			</list>
+		</property> 
+		<!-- Set -->
+		<property name="name">
+			<set>
+				<value>tom</value>
+				<value>jack</value>
+				<value>rose</value>
+			</set>
+		</property> 
+		<!-- Map -->
+		<property name="books">
+			<map>
+				<entry key="ISBN001" value="Struts框架开发"></entry>
+				<entry key="ISBN002" value="Hibernate框架开发"></entry>
+				<entry key="ISBN003" value="Spring框架开发"></entry>
+			</map>
+		</property> 
+		<!-- Properties -->
+		<property name="params">
+			<props>
+				<prop key="username">root</prop>
+				<prop key="password">root</prop>
+				<prop key="driverClass">com.mysql.jdbc.Driver</prop>
+				<prop key="url">jdbc:mysql://localhost:3306/test</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

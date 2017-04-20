@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<!-- 在配置文件中配置 hellobean 的实现类 代替了在工厂方法中返回的具体实现子类-->
+	<bean id="userBean" class="tarena.demo2.UserBean">
+		<property name="helloBean" ref="EnHelloBean"></property>
+	</bean>
+	
+	<!-- 这里配置的bean的自己开发的类，有时候会看到id=。。 class的值为org.apeach...  -->
+	
+	<!-- 创建bean 指定id 有对应的class class为实现类 -->
+	<bean id="EnHelloBean" class="tarena.demo2.EnHelloBean"/>
+	
+	<bean id="ZhHelloBean" class="tarena.demo2.ZhHelloBean"/>
+
+
+</beans>
