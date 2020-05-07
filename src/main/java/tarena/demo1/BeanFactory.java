@@ -6,6 +6,9 @@ public class BeanFactory {
 	public HelloBean getHello(){
 		return new EnHelloBean();
 		//return new ZhHelloBean();
-		
+
+
+
+
 	}
 }
